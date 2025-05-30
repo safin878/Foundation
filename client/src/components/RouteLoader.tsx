@@ -3,13 +3,12 @@
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import NProgress from "nprogress";
-// import "nprogress/nprogress.css";
+import "nprogress/nprogress.css";
 
 // Customize color and style via CSS
 NProgress.configure({ showSpinner: false });
 
 export default function RouteLoader() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const router = useRouter();
   const pathname = usePathname();
 

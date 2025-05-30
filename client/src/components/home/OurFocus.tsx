@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FC, ReactNode, useEffect, useState } from "react";
+import SkeletonCard from "../SkeletonCard/SkeletonCard";
 import {
   FaBook,
   FaUsers,
@@ -33,7 +34,9 @@ const FocusAreas: FC = () => {
   useEffect(() => {
     const fetchFocusAreas = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/focus");
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/focus`
+        );
         setFocusAreas(response.data);
       } catch (err: any) {
         setError("Failed to load focus areas.");
@@ -52,7 +55,7 @@ const FocusAreas: FC = () => {
         {/* Static Card */}
         <div className="bg-gradient-to-br from-blue-600 to-blue-500 text-white rounded-xl shadow-xl p-6 flex flex-col justify-between relative overflow-hidden">
           <div>
-            <h2 className="text-3xl font-bold mb-2">Our Focus Areas</h2>
+            <h2 className="text-3xl font-bold mb-2">Our Involment Areas</h2>
             <p className="text-sm opacity-90">
               Explore the impact areas we are passionate about.
             </p>
@@ -64,7 +67,9 @@ const FocusAreas: FC = () => {
 
         {/* Dynamic Cards */}
         {loading ? (
-          <p>Loading...</p>
+          Array(5)
+            .fill(0)
+            .map((_, index) => <SkeletonCard key={`skeleton-focus-${index}`} />)
         ) : error ? (
           <p className="text-red-500">{error}</p>
         ) : (
@@ -100,4 +105,3 @@ const FocusAreas: FC = () => {
 };
 
 export default FocusAreas;
- 

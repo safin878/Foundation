@@ -33,10 +33,9 @@ export const ActivitiesProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/users");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`);
         const data = await res.json();
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const formattedData = data.map((item: any) => ({
           id: item._id,
           type: item.type,

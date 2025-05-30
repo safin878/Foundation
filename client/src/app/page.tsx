@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import Banner from "./../components/home/Banner";
 import RecentActivities from "../components/home/RecentAct";
@@ -7,22 +7,33 @@ import SponsorCard from "./../components/home/SponSec";
 import OurFocus from "./../components/home/OurFocus";
 import Onp from "./../components/home/Onp";
 import { useActivities } from "../components/context/ActivitiesContext";
+import SkeletonCard from "../components/SkeletonCard/SkeletonCard";
 
-
- 
 export default function Home() {
-  const { activities, loading } = useActivities(); // 👈 using context here
+  const { activities, loading } = useActivities();
+
   return (
     <>
-      <Banner></Banner>
+      <Banner />
       <Intro />
+
+      {/* Skeleton Loading with Grid Layout */}
       {loading ? (
-        <div className="text-center py-10">Loading...</div>
+        <div className="container mx-auto px-4 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {Array(6)
+              .fill(0)
+              .map((_, index) => (
+                <SkeletonCard key={`skeleton-${index}`} />
+              ))}
+          </div>
+        </div>
       ) : (
         <RecentActivities activities={activities} />
       )}
-      <SponsorCard></SponsorCard>
-      <OurFocus></OurFocus>
+
+      <SponsorCard />
+      <OurFocus />
       <Onp />
     </>
   );

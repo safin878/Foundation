@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
- 
+
 interface FocusData {
   title: string;
   description: string;
@@ -18,9 +18,12 @@ const getFocusDataByTitle = async (
 ): Promise<FocusData | null> => {
   try {
     const encodedTitle = encodeURIComponent(title);
-    const res = await fetch(`http://localhost:5000/api/focus/${encodedTitle}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/focus/${encodedTitle}`,
+      {
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) {
       console.log("Failed to fetch. Status:", res.status);

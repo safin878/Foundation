@@ -161,7 +161,7 @@ const Navbar = () => {
           >
             <button className="flex items-center gap-1 px-1 py-2 hover:text-blue-600 transition-colors">
               <span className="relative">
-                Focus
+                Involment
                 <span className="absolute bottom-0 left-0 h-0.5 bg-blue-600 w-0 group-hover:w-full transition-all duration-300"></span>
               </span>
               {activeDropdown === "focus" ? (

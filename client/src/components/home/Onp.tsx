@@ -29,16 +29,6 @@ const partnerLogos = [
     alt: "Apple Logo",
     color: "#000000",
   },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Samsung_Logo.svg/320px-Samsung_Logo.svg.png",
-    alt: "Samsung Logo",
-    color: "#1428A0",
-  },
-  {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Intel_logo_%282006%29.svg/320px-Intel_logo_%282006%29.svg.png",
-    alt: "Intel Logo",
-    color: "#0071C5",
-  },
 ];
 
 const Onp: FC = () => {
