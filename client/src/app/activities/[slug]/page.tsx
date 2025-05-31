@@ -378,24 +378,26 @@ interface Activity {
   }[];
 }
 
-const getActivityBySlug = async (slug: string) => {
+interface PageProps {
+  params: {
+    slug: string;
+  };
+  searchParams?: Record<string, string | string[] | undefined>;
+}
+
+const getActivityBySlug = async (slug: string): Promise<Activity | null> => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/api/activities/${slug}`
     );
     if (!res.ok) throw new Error("Failed to fetch");
-    return await res.json();
+    return (await res.json()) as Activity;
   } catch (error) {
     console.error("Error:", error);
     return null;
   }
 };
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export async function generateMetadata({ params }: PageProps) {
   const activity = await getActivityBySlug(params.slug);
   return {
     title: activity?.title || "Activity Not Found",
@@ -409,7 +411,7 @@ const iconMap: Record<string, IconType> = {
   FaShieldAlt,
 };
 
-const ActivityDetailPage = async ({ params }: { params: { slug: string } }) => {
+const ActivityDetailPage = async ({ params }: PageProps) => {
   const activity = await getActivityBySlug(params.slug);
 
   if (!activity) return notFound();
