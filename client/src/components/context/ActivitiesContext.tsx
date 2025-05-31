@@ -15,6 +15,7 @@ interface Activity {
   date: string;
   title: string;
   imageUrl: string;
+  slug: string;
 }
 
 interface ActivitiesContextType {
@@ -42,6 +43,7 @@ export const ActivitiesProvider = ({ children }: { children: ReactNode }) => {
           date: item.date,
           title: item.title,
           imageUrl: item.imageUrl,
+          slug: item.slug,
         }));
 
         setActivities(formattedData);
