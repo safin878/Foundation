@@ -9,7 +9,8 @@ import {
 } from "react";
 
 // Define the type
-interface Activity {
+export interface Activity {
+  _id: string;
   id: number;
   type: string;
   date: string;
