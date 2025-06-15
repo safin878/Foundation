@@ -12,15 +12,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.9.0",
+    "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "mongoose": "^8.15.1"
+    "mongoose": "^8.15.2",
+    "sslcommerz-lts": "^1.1.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.18",
-    "@types/express": "^5.0.2",
+    "@types/body-parser": "^1.19.6",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
     "@types/node": "^22.15.23",
+    "@types/uuid": "^10.0.0",
     "nodemon": "^3.1.10",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"

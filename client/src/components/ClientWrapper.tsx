@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 
@@ -9,30 +9,22 @@ export default function LayoutWrapper({
 }: {
   children: React.ReactNode;
 }) {
-  const [is404, setIs404] = useState(false);
+  const pathname = usePathname();
 
-  useEffect(() => {
-    const check404 = () => {
-      const hasClass = document.body.classList.contains("not-found-page");
-      setIs404(hasClass);
-    };
+  // Routes that should not show Navbar and Footer
+  const hideLayoutForRoutes = [
+    "/donation/success",
+    "/donation/failed",
+    "/donation/canceled",
+  ];
 
-    check404(); // Initial check
+  // Check if current pathname starts with any route above
+  const hideLayout = hideLayoutForRoutes.some((route) =>
+    pathname.startsWith(route)
+  );
 
-    // Observe class changes
-    const observer = new MutationObserver(check404);
-    observer.observe(document.body, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  if (is404) {
-    return <>{children}</>; // ❌ No Navbar/Footer
+  if (hideLayout) {
+    return <>{children}</>; // No Navbar/Footer
   }
 
   return (

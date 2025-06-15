@@ -554,7 +554,7 @@ const Navbar = () => {
             </div>
 
             <Link
-              href="/what-we-do"
+              href="/wwd"
               className="px-4 py-3 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors font-medium text-gray-800 flex items-center gap-3"
               onClick={toggleSidebar}
             >
