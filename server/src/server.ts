@@ -24,33 +24,13 @@ app.use((req, res, next) => {
 });
 
 // ===== (2) CORS & JSON MIDDLEWARE =====
-// app.use(
-//   cors({
-//     origin: process.env.FRONTEND_URL || "http://localhost:3000",
-//     credentials: true,
-//   })
-// );
-
-const allowedOrigins = [
-  "https://foundation-nine-eta.vercel.app",
-  "https://foundation-53c2.onrender.com",
-  "http://localhost:3000",
-];
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true); // allow non-browser requests like Postman
-      if (allowedOrigins.indexOf(origin) === -1) {
-        const msg =
-          "The CORS policy for this site does not allow access from the specified Origin.";
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    },
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
+
 app.use(express.json());
 
 // ===== (3) ROUTES =====
