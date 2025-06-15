@@ -14,7 +14,6 @@ connectDB();
 console.log("SSL Store ID:", process.env.SSLCOMMERZ_STORE_ID);
 console.log("Mongo URI:", process.env.MONGO_URI);
 
-// ===== (1) ADD CSP MIDDLEWARE HERE =====
 app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
