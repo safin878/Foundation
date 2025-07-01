@@ -22,24 +22,33 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the Foundation Api!");
+  const routes: string[] = [];
+
+  res.send(`
+    <h2>🚀 Welcome to the Foundation API</h2>
+    <p>Available GET Routes:</p>
+    <ul>
+       <li><a href="/api/focus">Focus API</a></li>
+       <li><a href="/api/activities">Activity API</a></li>
+    </ul>
+  `);
 });
 
 // ===== (2) CORS & JSON MIDDLEWARE =====
-// app.use(
-//   cors({
-//     origin: process.env.FRONTEND_URL || "http://localhost:3000",
-//     credentials: true,
-//   })
-// );
-
-//only Development
 app.use(
   cors({
-    origin: true, // সব অরিজিন থেকে রিকোয়েস্ট অ্যালাউ করবে
+    origin: process.env.FRONTEND_URL || "http://localhost:3000",
     credentials: true,
   })
 );
+
+//only Development
+// app.use(
+//   cors({
+//     origin: true,
+//     credentials: true,
+//   })
+// );
 
 app.use(express.json());
 

@@ -1,5 +1,11 @@
 import mongoose, { Document, Schema } from "mongoose";
 import { ImpactArea, Stat, Outcome } from "../types/activity";
+export interface ICard {
+  type: string;
+  date: string;
+  title: string;
+  imageUrl: string;
+}
 
 export interface IActivity extends Document {
   slug: string;
@@ -11,6 +17,7 @@ export interface IActivity extends Document {
   stats: Stat[];
   objectives: string[];
   outcomes: Outcome[];
+  card: ICard;
 }
 
 const ActivitySchema: Schema = new Schema(
@@ -41,6 +48,14 @@ const ActivitySchema: Schema = new Schema(
         content: { type: String, required: true },
       },
     ],
+    card: {
+      type: {
+        type: { type: String, required: true },
+        date: { type: String, required: true },
+        title: { type: String, required: true },
+        imageUrl: { type: String, required: true },
+      },
+    },
   },
   { timestamps: true }
 );
