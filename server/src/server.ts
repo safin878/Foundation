@@ -22,8 +22,6 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  const routes: string[] = [];
-
   res.send(`
     <h2>🚀 Welcome to the Foundation API</h2>
     <p>Available GET Routes:</p>
@@ -35,20 +33,35 @@ app.get("/", (req, res) => {
 });
 
 // ===== (2) CORS & JSON MIDDLEWARE =====
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: process.env.FRONTEND_URL || "http://localhost:3000",
+//     credentials: true,
+//   })
+// );
 
-//only Development
+// only Development
 // app.use(
 //   cors({
 //     origin: true,
 //     credentials: true,
 //   })
 // );
+
+const allowedOrigins = (
+  process.env.NODE_ENV === "production"
+    ? [process.env.FRONTEND_URL]
+    : ["http://localhost:3000"]
+).filter((origin): origin is string => typeof origin === "string");
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
+
+console.log("Running in NODE_ENV:", process.env.NODE_ENV);
 
 app.use(express.json());
 
