@@ -40,6 +40,21 @@ app.get("/", (req, res) => {
 //   })
 // );
 
+const allowedOrigins = [process.env.FRONTEND_URL, "http://localhost:3000"];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
 // only Development
 // app.use(
 //   cors({
@@ -48,20 +63,21 @@ app.get("/", (req, res) => {
 //   })
 // );
 
-const allowedOrigins = (
-  process.env.NODE_ENV === "production"
-    ? [process.env.FRONTEND_URL]
-    : ["http://localhost:3000"]
-).filter((origin): origin is string => typeof origin === "string");
+// const allowedOrigins = (
+//   process.env.NODE_ENV === "production"
+//     ? [process.env.FRONTEND_URL]
+//     : ["http://localhost:3000"]
+// ).filter((origin): origin is string => typeof origin === "string");
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: allowedOrigins,
+//     credentials: true,
+//   })
+// );
 
-console.log("Running in NODE_ENV:", process.env.NODE_ENV);
+// console.log("Running in NODE_ENV:", process.env.NODE_ENV);
+// console.log("Allowed Origins:", allowedOrigins);
 
 app.use(express.json());
 
