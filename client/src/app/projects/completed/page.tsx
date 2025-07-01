@@ -350,7 +350,7 @@ export default function CurrentProjectsPage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {activities
-              .filter((activity: Activity) => activity.type === "STORIES")
+              .filter((activity: Activity) => activity.type === "NEWS")
               .map((activity: Activity) => (
                 <motion.div
                   key={activity.id}
@@ -389,7 +389,7 @@ export default function CurrentProjectsPage() {
                         </motion.div>
 
                         <div className="absolute top-3 left-3 bg-white/90 px-3 py-1 rounded-full shadow-sm backdrop-blur-sm z-10">
-                          <span className="text-xs font-semibold text-blue-600">
+                          <span className="text-xs font-semibold text-green-600">
                             {activity.type}
                           </span>
                         </div>

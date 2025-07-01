@@ -24,14 +24,6 @@ const Navbar = () => {
   const projectDropdownRef = useRef<HTMLDivElement>(null);
   const aboutDropdownRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const toggleSidebar = () => {
     setSidebarOpen((prev) => !prev);
     setMobileDropdown(null);
@@ -329,13 +321,13 @@ const Navbar = () => {
           </button>
 
           {/* Glowing Donate Button */}
-          <Link
+          {/* <Link
             href="/donate"
             className="hidden sm:inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full text-sm font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 whitespace-nowrap relative overflow-hidden group"
           >
             <span className="relative z-10">DONATE</span>
             <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-          </Link>
+          </Link> */}
 
           {/* Animated Hamburger Menu */}
           <button
@@ -599,7 +591,7 @@ const Navbar = () => {
             </div>
 
             {/* Donate Button in Sidebar */}
-            <div className="px-4 pt-6">
+            {/* <div className="px-4 pt-6">
               <Link
                 href="/donate"
                 className="block w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-center px-6 py-3 rounded-full hover:shadow-lg hover:shadow-blue-500/30 transition-all font-medium"
@@ -607,34 +599,7 @@ const Navbar = () => {
               >
                 DONATE NOW
               </Link>
-            </div>
-
-            {/* Contact Info */}
-            <div className="px-4 pt-8">
-              <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                Contact Us
-              </h4>
-              <div className="space-y-2">
-                <a
-                  href="mailto:info@bpf.org"
-                  className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  <span className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
-                    @
-                  </span>
-                  info@bpf.org
-                </a>
-                <a
-                  href="tel:+1234567890"
-                  className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  <span className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
-                    📞
-                  </span>
-                  +1 (234) 567-890
-                </a>
-              </div>
-            </div>
+            </div> */}
           </nav>
         </div>
       </aside>

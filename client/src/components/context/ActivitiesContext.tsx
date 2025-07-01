@@ -35,16 +35,19 @@ export const ActivitiesProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`);
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/activities`
+        );
         const data = await res.json();
 
         const formattedData = data.map((item: any) => ({
           id: item._id,
-          type: item.type,
-          date: item.date,
-          title: item.title,
-          imageUrl: item.imageUrl,
           slug: item.slug,
+          // nested card data
+          type: item.card?.type || "",
+          date: item.card?.date || "",
+          title: item.card?.title || "",
+          imageUrl: item.card?.imageUrl || "",
         }));
 
         setActivities(formattedData);

@@ -95,14 +95,14 @@ export default async function FocusPage({ params }: Props) {
               ))}
             </div>
 
-            <div className="mt-12 flex flex-wrap gap-4">
+            {/* <div className="mt-12 flex flex-wrap gap-4">
               <button className="px-8 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
                 Get Involved
               </button>
               <button className="px-8 py-3 bg-white text-blue-600 border border-blue-600 rounded-lg shadow-md hover:bg-blue-50 transition-all duration-300">
                 Learn More
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
 

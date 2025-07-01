@@ -7,6 +7,7 @@ const router = express.Router();
 router.get("/", activityController.getAllActivities);
 
 // GET single activity by slug
-router.get("/:slug", activityController.getActivityBySlug);
+router.get("/slug/:slug", activityController.getActivityBySlug);
+router.get("/:id", activityController.getActivityById);
 
 export default router;

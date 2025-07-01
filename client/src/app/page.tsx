@@ -11,6 +11,7 @@ import SkeletonCard from "../components/SkeletonCard/SkeletonCard";
 
 export default function Home() {
   const { activities, loading } = useActivities();
+  console.log(activities);
 
   return (
     <>

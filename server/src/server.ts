@@ -2,7 +2,6 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db";
-import userRoutes from "./routes/userRoutes";
 import focusRoutes from "./routes/focusRoutes";
 import activityRoutes from "./routes/activityRoutes";
 import donationRoutes from "./routes/donationRoutes";
@@ -22,10 +21,22 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the Foundation Api!");
+});
+
 // ===== (2) CORS & JSON MIDDLEWARE =====
+// app.use(
+//   cors({
+//     origin: process.env.FRONTEND_URL || "http://localhost:3000",
+//     credentials: true,
+//   })
+// );
+
+//only Development
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: true, // সব অরিজিন থেকে রিকোয়েস্ট অ্যালাউ করবে
     credentials: true,
   })
 );
@@ -33,7 +44,7 @@ app.use(
 app.use(express.json());
 
 // ===== (3) ROUTES =====
-app.use("/api/users", userRoutes);
+
 app.use("/api/focus", focusRoutes);
 app.use("/api/activities", activityRoutes);
 app.use("/api", donationRoutes);

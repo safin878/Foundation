@@ -13,9 +13,6 @@ const images = [
 
 const sliderHeight = 570;
 
- 
-
-
 const MaterialYouSlider = () => {
   const [current, setCurrent] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -42,7 +39,7 @@ const MaterialYouSlider = () => {
   return (
     <div
       ref={containerRef}
-      className="w-full mx-auto relative overflow-hidden shadow-2xl"
+      className="w-full  mx-auto relative overflow-hidden shadow-2xl"
       style={{ height: sliderHeight }}
     >
       {/* Sliding container */}
