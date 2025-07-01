@@ -33,27 +33,27 @@ app.get("/", (req, res) => {
 });
 
 // ===== (2) CORS & JSON MIDDLEWARE =====
-// app.use(
-//   cors({
-//     origin: process.env.FRONTEND_URL || "http://localhost:3000",
-//     credentials: true,
-//   })
-// );
-
-const allowedOrigins = [process.env.FRONTEND_URL, "http://localhost:3000"];
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: process.env.FRONTEND_URL || "http://localhost:3000",
     credentials: true,
   })
 );
+
+// const allowedOrigins = [process.env.FRONTEND_URL, "http://localhost:3000"];
+
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//     credentials: true,
+//   })
+// );
 
 // only Development
 // app.use(
