@@ -30,9 +30,20 @@ app.get("/", (req, res) => {
   `);
 });
 // ===== (2) CORS & JSON MIDDLEWARE =====
+app.use((0, cors_1.default)({
+    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    credentials: true,
+}));
+// const allowedOrigins = [process.env.FRONTEND_URL, "http://localhost:3000"];
 // app.use(
 //   cors({
-//     origin: process.env.FRONTEND_URL || "http://localhost:3000",
+//     origin: function (origin, callback) {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
 //     credentials: true,
 //   })
 // );
@@ -43,14 +54,19 @@ app.get("/", (req, res) => {
 //     credentials: true,
 //   })
 // );
-const allowedOrigins = (process.env.NODE_ENV === "production"
-    ? [process.env.FRONTEND_URL]
-    : ["http://localhost:3000"]).filter((origin) => typeof origin === "string");
-app.use((0, cors_1.default)({
-    origin: allowedOrigins,
-    credentials: true,
-}));
-console.log("Running in NODE_ENV:", process.env.NODE_ENV);
+// const allowedOrigins = (
+//   process.env.NODE_ENV === "production"
+//     ? [process.env.FRONTEND_URL]
+//     : ["http://localhost:3000"]
+// ).filter((origin): origin is string => typeof origin === "string");
+// app.use(
+//   cors({
+//     origin: allowedOrigins,
+//     credentials: true,
+//   })
+// );
+// console.log("Running in NODE_ENV:", process.env.NODE_ENV);
+// console.log("Allowed Origins:", allowedOrigins);
 app.use(express_1.default.json());
 // ===== (3) ROUTES =====
 app.use("/api/focus", focusRoutes_1.default);
