@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://foundation-nine-eta.vercel.app
+
+# Sitemaps
+Sitemap: https://foundation-nine-eta.vercel.app/sitemap.xml
